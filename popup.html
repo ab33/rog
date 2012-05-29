@@ -1,0 +1,99 @@
+<html>
+<head>
+
+<style>
+
+body {
+    min-width: 450px;
+    overflow: hidden;
+    margin: 0;
+	height: 300px;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 9pt;
+    color: #999999;
+    text-align: left;
+	background: -webkit-linear-gradient(top, white, #D3D8E8);
+	font-family: "lucida grande",tahoma,verdana,arial,sans-serif; }
+
+div.hdr {
+	background-color: #3B5998;
+    font-size: 12pt;
+    font-weight: bold;
+    color: white;
+    padding: 10px;
+}
+
+div.pane {
+	height: 100%;
+    color: #333;
+    padding: 10px;
+}
+
+td.property {
+    font-weight: bold;
+    color: #999999;
+    font-size: 9pt;
+}
+
+td.content {
+    color: #555555;
+    font-size: 9pt;
+}
+
+</style>
+
+<script>
+
+window.onload = function() {
+	chrome.tabs.getSelected(null,
+		function(tab)
+		{
+			chrome.tabs.sendRequest(tab.id, {method: 'getOgMetaAsArray'},
+				function(response) {
+					present(JSON.parse(response.result));
+	  			}
+	  		);
+		}
+	);
+}
+
+function formatContent(value) {
+	if ((value.search('http:/') == 0) ||
+		(value.search('https:/') == 0)) {
+		return '<a href="#" onclick="javascript:openInTab(\'' + value + '\')">' + value + '</a>';
+	}
+	return value;
+}
+
+function openInTab(link) {
+    chrome.tabs.create({url: link});
+}
+
+function present(result) {
+	if (!result.length) {
+		document.getElementById('id_pane').innerHTML = 'Sorry. Something wrong has happend.';
+		return;
+	}
+
+	var text = '<table border="0" width="100%" cellpadding="5" cellspacing="0">';
+	for(var i = 0; i < result.length; i++) {
+		text +=   '<tr valign="top">'
+				+ '<td align="left" width="30%" class="property">' + result[i].property + '</td>'
+				+ '<td width="70%" class="content">'  + formatContent(result[i].content)  + '</td>'
+				+ '</tr>';
+	}
+	text += '</table>';
+
+	document.getElementById('id_pane').innerHTML = text;
+}
+
+</script>
+</head>
+<body>
+
+<div class="hdr">The Open Graph meta properties:</div>
+<div id="id_pane" class="pane"></div>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+The Open Graph meta properties revealer. <ab33@gmx.com>
+
+1. Instructions for packed version.
+2. Instructions for unpacked version.
+3. Usage instructions.
+4. Permissions.
+
+
+1. Instructions for packed version.
+
+	* In Chrome browser click on URL that points to .CRX file.
+
+2. Instructions for unpacked version.
+
+How to install:
+--------------
+In Google Chrome:
+	* _go_to_ "Options"
+	* _select_tab_ "Extensions"
+	* _click_checkbox_ "Developer mode"
+	* _press_button_ "Load unpacked extension.."
+	* _point_to_ a directory with unpacked extension
+	* done
+
+
+3. Usage instructions.
+
+How to use:
+----------
+    * on a page with the Open Graph meta information please notice
+      "og:" page action icon in browser's tab
+	* press the icon to see meta information
+
+4. Permissions.
+
+	* "Your data on all websites" - required for Javascript file (cs.js) injection,
+	* "Your tabs and browsing activity" - required for opening a link in a new tab.
