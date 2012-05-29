@@ -61,7 +61,7 @@ window.onload = function() {
 function formatContent(value) {
 	if ((value.search('http:/') == 0) ||
 		(value.search('https:/') == 0)) {
-		return '<a href="#" onclick="javascript:openInTab(\'' + value + '\')">' + value + '</a>';
+		return '<a href="' + value + '" onclick="javascript:openInTab(\'' + value + '\')">' + value + '</a>';
 	}
 	return value;
 }

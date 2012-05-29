@@ -1,6 +1,6 @@
 {
   "name": "Reveal The Open Graph meta properties",
-  "version": "0.1",
+  "version": "0.2",
   "description": "Reveals meta properties of The Open Graph protocol founs on the page.",
   "content_scripts": [ {
       "js": [ "cs.js" ],
